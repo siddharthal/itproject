@@ -1,0 +1,207 @@
+timestamp: 2016-04-05T21:43:43.363172
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2016-04-05T21:43:50.868694
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-04-05T21:43:56.849203
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-04-05T21:44:01.459368
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2016-04-05T21:44:05.138153
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-04-05T21:44:06.832025
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2016-04-05T21:44:59.141267
+CREATE TABLE tble(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    teams_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    auth_user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-04-05T21:45:47.617920
+CREATE TABLE teams(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4bef72f50>),
+    moderator CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:46:33.992824
+CREATE TABLE teams(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be533690>),
+    moderator CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:46:40.643324
+CREATE TABLE teams(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be5433d0>),
+    moderator CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:47:22.004677
+CREATE TABLE teams(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be408bd0>),
+    moderator CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:47:40.688379
+CREATE TABLE teams(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be478310>),
+    moderator CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:48:15.580460
+CREATE TABLE teams(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    moderator CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-04-05T21:49:28.778840
+CREATE TABLE agenda(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be366450>),
+    DT TIMESTAMP,
+    venue CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be366690>),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:49:40.712947
+CREATE TABLE agenda(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be1a02d0>),
+    DT TIMESTAMP,
+    venue CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4be1a0510>),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:50:05.915089
+CREATE TABLE agenda(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4bdee1a90>),
+    DT TIMESTAMP,
+    venue CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4bdee1b10>),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:50:40.673600
+CREATE TABLE agenda(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4dc409910>),
+    DT TIMESTAMP,
+    venue CHAR(<gluon.validators.IS_NOT_EMPTY object at 0x7fd4dc409990>),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+timestamp: 2016-04-05T21:51:49.596194
+CREATE TABLE agenda(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    DT TIMESTAMP,
+    venue CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-04-05T21:55:23.411944
+CREATE TABLE topic(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    agenda_id INTEGER REFERENCES agenda (id) ON DELETE CASCADE  ,
+    title CHAR(512),
+    description TEXT
+);
+success!
+success!
+timestamp: 2016-04-05T21:57:37.870836
+CREATE TABLE minutes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Reference CHAR(512),
+    agenda_id INTEGER REFERENCES agenda (id) ON DELETE CASCADE  ,
+    teams_id INTEGER REFERENCES teams (id) ON DELETE CASCADE  
+);
+success!
