@@ -1,0 +1,5 @@
+{{extend 'layout.html'}}
+<h2>choose moderator</h2>
+{{for j in array:}}
+{{=A(j.person,_href=URL('details1',args=j.person))}}</br>
+{{pass}}

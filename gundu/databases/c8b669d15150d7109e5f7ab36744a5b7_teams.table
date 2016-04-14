@@ -28,11 +28,11 @@ p12
 g4
 I512
 sg5
-I00
+I01
 sg6
 I2
 sg7
-S'CHAR(512)'
+S'CHAR(512) UNIQUE'
 p14
 sg9
 I00

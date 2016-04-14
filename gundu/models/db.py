@@ -99,8 +99,8 @@ auth.settings.reset_password_requires_verification = True
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
 db.define_table("teams",
-Field("name",requires=IS_NOT_EMPTY()),
-Field("moderator","reference auth_user",readable=False,writable=False),
+Field("name",requires=IS_NOT_EMPTY(),unique=True),
+Field("moderator","reference auth_user",readable=False,writable=False,default=None),
 auth.signature
 )
 db.define_table("agenda",
@@ -110,7 +110,7 @@ Field("venue",requires=IS_NOT_EMPTY()),
 auth.signature
 )
 db.define_table("tble",
-Field("teams","reference teams"),
+Field("teams","reference teams",unique=True),
 Field("person","reference auth_user",default=auth.user_id),
 )
 db.define_table("topic",
@@ -123,3 +123,10 @@ db.define_table("minutes",
                 Field("agenda","reference agenda"),
                 Field("teams","reference teams"),
 )
+db.define_table("mail1",
+                Field("subject","string",requires=IS_NOT_EMPTY()),
+                Field("body","text",requires=IS_NOT_EMPTY()),
+                Field("teams",readable=False,writable=False),
+                Field("moderator",readable=False,writable=False),
+                auth.signature
+    )

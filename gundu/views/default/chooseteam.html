@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<style>
+</style>
+<h1>choose your teams</h1>
+{{for i in teams:}}
+{{=A(i.name,_href=URL('show',args=i.id))}}</br>
+{{pass}}
