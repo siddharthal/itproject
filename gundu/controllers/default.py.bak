@@ -135,7 +135,7 @@ def sendmail():
     form=SQLFORM(db.mail1)#.process()
     if form.process().accepted:
     	response.flash = "mail sent"
-        my=db(db.mail1).select(orderby=~created_on)
+        my=db(db.mail1).select(orderby=~db.mail1.created_on)
         dhoni=db(db.teams.id==session.popo).select()
         if (dhoni[0].moderator==my[0].created_by):
             db(db.mail1.id==my[0].id).update(moderator=1,teams=session.popo)
@@ -143,4 +143,11 @@ def sendmail():
             db(db.mail1.id==my[0].id).update(moderator=0,teams=session.popo)
     elif form.errors:
         response.flash = "pls check subject and body"
+    return locals()
+def teamin():
+    q=db(db.tble.person==auth.user_id).select()
+    return locals()
+def mail2():
+    i = db.tble(request.args(0,cast=int)) or redirect(URL('index'))
+    session.popo=i.teams
     return locals()

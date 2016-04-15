@@ -144,3 +144,13 @@ def sendmail():
     elif form.errors:
         response.flash = "pls check subject and body"
     return locals()
+def teamin():
+    q=db(db.tble.person==auth.user_id).select()
+    return locals()
+def mail2():
+    i = db.tble(request.args(0,cast=int)) or redirect(URL('index'))
+    session.popo=i.teams
+    return locals()
+def memo():
+    p=db(db.teams.moderator==auth.user_id).select()
+    return locals()

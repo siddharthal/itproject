@@ -144,3 +144,16 @@
 [2016-04-14 19:40:24] EDIT gundu/views/default/mail.html: 0
 [2016-04-14 19:41:58] EDIT gundu/views/default/mail.html: 0
 [2016-04-14 22:51:28] EDIT gundu/controllers/default.py: 0
+[2016-04-14 23:31:09] EDIT gundu/views/default/t_i_in.html: 1
+[2016-04-14 23:32:48] EDIT gundu/controllers/default.py: 3
+[2016-04-14 23:35:18] EDIT gundu/views/default/teamin.html: 0
+[2016-04-14 23:40:16] EDIT gundu/controllers/default.py: 4
+[2016-04-14 23:41:07] EDIT gundu/views/default/teamin.html: 0
+[2016-04-14 23:42:23] CREATE default/mail2.html.py: 0
+[2016-04-14 23:42:34] CREATE default/mail2.html: 0
+[2016-04-14 23:44:03] EDIT gundu/views/default/mail2.html: -1
+[2016-04-14 23:45:38] EDIT gundu/views/default/mail2.html: 0
+[2016-04-14 23:52:31] EDIT gundu/controllers/default.py: 3
+[2016-04-14 23:52:48] CREATE default/memo.html: 0
+[2016-04-14 23:53:45] EDIT gundu/views/default/memo.html: 1
+[2016-04-14 23:54:50] EDIT gundu/views/default/memo.html: 0

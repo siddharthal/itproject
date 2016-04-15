@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+{{for i in q:}}
+{{=i.teams}}   {{=A('mail',_href=URL('mail2',args=i.id))}} </br>
+{{pass}}
