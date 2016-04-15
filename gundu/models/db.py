@@ -130,9 +130,3 @@ db.define_table("mail1",
                 Field("moderator",readable=False,writable=False),
                 auth.signature
     )
-from gluon.contrib.login_methods.rpx_account import RPXAccount
-auth.settings.actions_disabled=['register','change_password','request_reset_password']
-auth.settings.login_form = RPXAccount(request,
-api_key='8ac4cef3b0b2180fd626091d10788b177f529227',
-domain='localhost',
-url = "http://siddharthal.pythonanywhere.com/%s/default/user/login" % request.application)
