@@ -1,2 +1,24 @@
 {{extend 'layout.html'}}
-{{=A('send',_href=URL('sendmail',args=i.id))}}
+<div class="container">
+<div class="panel panel-info">
+{{if flag is 0:}}
+    <div class="panel-heading"><h3 class="panel-title">{{=A('send',_href=URL('sendmail',args=i.id))}}</h3></div>
+<ul class="list-group">
+{{for p in ma:}}
+{{if p.moderator is '1':}}
+<li class="list-group-item" style="background:silver">regatte</br>{{=A(p.subject,_href=URL('fullmail',args=p.id))}}</li>
+{{pass}}
+{{pass}}
+{{pass}}
+{{if flag is 1:}}
+    <div class="panel-heading"><h3 class="panel-title">{{=A('send',_href=URL('sendmail',args=i.id))}}</h3></div>
+<ul class="list-group">
+{{for p in ma:}}
+{{if p.moderator is '0':}}
+<li class="list-group-item" style="background:silver">regatte</br>{{=A(p.subject,_href=URL('fullmail',args=p.id))}}</li>
+{{pass}}
+{{pass}}
+</ul>
+{{pass}}
+</div>
+</div>

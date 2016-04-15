@@ -44,6 +44,8 @@ def _():
     (T('as moderator'), False, URL('default', 'memo'), []),
      (T('create team'), False, URL('default', 'c_team'), []),
 ]
+        
+        ]
 if DEVELOPMENT_MENU: _()
 
 if "auth" in locals(): auth.wikimenu()

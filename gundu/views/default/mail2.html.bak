@@ -1,2 +1,16 @@
 {{extend 'layout.html'}}
-{{=A('send',_href=URL('sendmail',args=i.id))}}
+{{=A('send',_href=URL('sendmail',args=i.teams))}}
+{{if flag is 0:}}
+{{for p in ma:}}
+{{if p.moderator is '1':}}
+{{=A(p.subject,_href=URL('fullmail',args=p.id))}}</br>
+{{pass}}
+{{pass}}
+{{pass}}
+{{if flag is 1:}}
+{{for p in ma:}}
+{{if p.moderator is '0':}}
+{{=A(p.subject,_href=URL('fullmail',args=p.id))}}</br>
+{{pass}}
+{{pass}}
+{{pass}}

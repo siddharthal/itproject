@@ -128,6 +128,12 @@ def home():
     return locals()
 def mail():
     i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    pro=db(db.teams.id==i.id).select()
+    ma=db(db.mail1.teams==i.id).select(orderby=~db.mail1.created_on)
+    if (pro[0].moderator==auth.user_id):
+        flag=1
+    else:
+        flag=0
     session.popo=i.id
     return locals()
 def sendmail():
@@ -149,5 +155,17 @@ def teamin():
     return locals()
 def mail2():
     i = db.tble(request.args(0,cast=int)) or redirect(URL('index'))
+    pro=db(db.teams.id==i.teams).select()
+    ma=db(db.mail1.teams==i.teams).select(orderby=~db.mail1.created_on)
+    if (pro[0].moderator==auth.user_id):
+        flag=1
+    else:
+        flag=0
     session.popo=i.teams
+    return locals()
+def memo():
+    p=db(db.teams.moderator==auth.user_id).select()
+    return locals()
+def fullmail():
+    i = db.mail1(request.args(0,cast=int)) or redirect(URL('index'))
     return locals()

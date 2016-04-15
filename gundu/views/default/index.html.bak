@@ -5,7 +5,7 @@
     <header class="container-fluid background">
     </header>
 {{end}}
-{{block right_sidebar}}
+{{block left_sidebar}}
 <div class="panel panel-info">
   <div class="panel-heading"><h3 class="panel-title"><a class="btn-block"
       href="{{=URL('admin','default','index')}}">
