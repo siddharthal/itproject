@@ -130,6 +130,7 @@ db.define_table("mail1",
                 Field("moderator",readable=False,writable=False),
                 auth.signature
     )
+"""
 from gluon.contrib.login_methods.rpx_account import RPXAccount
 auth.settings.actions_disabled=['register','change_password','request_reset_password']
 auth.settings.login_form = RPXAccount(request,
@@ -137,3 +138,4 @@ auth.settings.login_form = RPXAccount(request,
                                       domain='minutes',
                                       url = "http://localhost:8000/%s/default/user/login" % request.
                                       application)
+"""
