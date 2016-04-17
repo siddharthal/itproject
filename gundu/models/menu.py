@@ -43,9 +43,8 @@ def _():
     (T('teams im in'), False, URL('default', 'teamin'), []),
     (T('as moderator'), False, URL('default', 'memo'), []),
      (T('create team'), False, URL('default', 'c_team'), []),
+     (T('choose team'), False, URL('default', 'chooseteam'), [])
 ]
-        
-        ]
 if DEVELOPMENT_MENU: _()
 
 if "auth" in locals(): auth.wikimenu()
