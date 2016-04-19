@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+{{for i in yuvi:}}
+{{=A(i.title,_href=URL('full',args=i.id))}}
+{{pass}}

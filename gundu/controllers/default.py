@@ -60,7 +60,7 @@ def call():
 def c_team():
     form = SQLFORM(db.teams)#.process(next=URL('index'))
     if form.process().accepted:
-    	response.flash = "1 record inserted"
+    	response.flash = "team created"
         q=db(db.teams.id>0).select(orderby=~db.teams.created_on)
         r=db(db.tble.id>0).select(db.tble.id)
         if q[0].id not in r:
@@ -69,7 +69,7 @@ def c_team():
         response.flash = "Errors"
     else:
         response.flash = "Please fill the form"
-    return dict(form=form)
+    return locals()
 @auth.requires_login()
 def chooseteam():
     if session.var is 1:
@@ -169,5 +169,39 @@ def memo():
 def fullmail():
     i = db.mail1(request.args(0,cast=int)) or redirect(URL('index'))
     return locals()
-def test():
+def c_agenda():
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    if(i.moderator!=auth.user_id):
+        redirect(URL('index'))
+    form=SQLFORM(db.agenda)#.process()
+    if form.process().accepted:
+    	response.flash = "agenda created"
+        q=db(db.agenda.id>0).select(orderby=~db.agenda.created_on)
+        db(db.agenda.id==q[0].id).update(teams=i.id)
+    elif form.errors:
+        response.flash = "Errors"
+    else:
+        response.flash = "Please fill the form"
+    return locals()
+def agenda():
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    yuvi=db(db.agenda.teams==i.id).select()
+    session.pastore=i.moderator
+    return locals()
+def full():
+    i = db.agenda(request.args(0,cast=int)) or redirect(URL('index'))
+    form=SQLFORM(db.topic)
+    pandya=db(db.topic.agenda==i.id).select()
+    session.pro=i.id
+    if form.process().accepted:
+    	response.flash = "topic added"
+        q=db(db.topic.id>0).select(orderby=~db.topic.created_on)
+        db(db.topic.id==q[0].id).update(agenda=i.id)
+        redirect(URL('full',args=i.id))
+    elif form.errors:
+        response.flash = "Errors"
+    return locals()
+def topic():
+    session.flow=1
+    redirect((URL('full',args=session.pro)))
     return locals()

@@ -1,0 +1,26 @@
+{{extend 'layout.html'}}
+<style>
+</style>
+<div class="container">
+    <h2>{{=i.title}}</h2>
+    objective:<h3>{{=i.objective}}</h3>
+    start_time:</h3>{{=i.stime}}</h3>
+    venue:<h3>{{=i.venue}}</h3>
+    called by:<h3>{{=i.calledby}}</h3>
+    special invities:<h3>{{=i.invo}}</h3>
+    {{for j in pandya:}}
+    {{=j.title}} {{=j.stime}}<br>
+    {{=j.Des}}<br>
+    {{pass}}
+    {{if(session.pastore==auth.user_id):}}
+    {{=A('add topic',_href=URL('topic'))}}
+    {{pass}}
+    {{if session.flow==1:}}
+<div class="wrapper clearfix">
+    <div class="pull-left">
+    {{=form}}
+</div>
+</div>
+    {{session.flow=0}}
+    {{pass}}
+</div>

@@ -104,9 +104,13 @@ Field("moderator","reference auth_user",readable=False,writable=False,default=No
 auth.signature
 )
 db.define_table("agenda",
-Field("title",requires=IS_NOT_EMPTY()),
-Field("DT","datetime",readable=False,writable=False),
+Field("title",requires=IS_NOT_EMPTY(),unique=True),
+Field("objective",requires=IS_NOT_EMPTY()),
+Field("stime","datetime",requires=IS_NOT_EMPTY(),label="start time"),
 Field("venue",requires=IS_NOT_EMPTY()),
+Field("calledby",requires=IS_NOT_EMPTY()),
+Field("invo",label="special invitees"),
+Field("teams",readable=False,writable=False),
 auth.signature
 )
 db.define_table("tble",
@@ -114,9 +118,10 @@ Field("teams","reference teams",unique=True),
 Field("person","reference auth_user",default=auth.user_id),
 )
 db.define_table("topic",
-Field("agenda","reference agenda"),
+Field("agenda","reference agenda",readable=False,writable=False),
 Field("title","string",requires=IS_NOT_EMPTY()),
-Field('summary','text',requires=IS_NOT_EMPTY()),
+Field("Des","text",label="Description",requires=IS_NOT_EMPTY()),
+Field("stime",label="Time alloted")
 )
 db.define_table("minutes",
                 Field("Reference","string",requires=IS_NOT_EMPTY()),

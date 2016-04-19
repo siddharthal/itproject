@@ -2,6 +2,13 @@
 <style>
 </style>
 <h1>choose your teams</h1>
+<div class="col-sm-4">
+<div class="list-group">
+    <div  class="list-group-item active" style="background:#154360; color:white"><h4>Teams</h4></div>
 {{for i in teams:}}
-{{=A(i.name,_href=URL('show',args=i.id))}}</br>
+<div  class="list-group-item">
+    {{=i.name}} <span  class="badge" style="background:silver;color:black"><h6>{{=A('choose',_href=URL('show',args=i.id))}}</h6></span>
+        </div>
 {{pass}}
+</div>
+</div>

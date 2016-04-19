@@ -1,4 +1,14 @@
 {{extend 'layout.html'}}
+<div class="container">
+</div>
 {{for i in p:}}
-{{=A(i.name,_href=URL('details',args=i.id))}}   {{=A('mail',_href=URL('mail',args=i.id))}} </br>
+<div class="jumbotron">
+    <hr>
+    <h2>{{=i.name}}</h2>
+    <hr>
+    {{=A('choose moderator',_href=URL('details',args=i.id))}}</br>   {{=A('mail',_href=URL('mail',args=i.id))}}</br>
+{{=A('agendas',_href=URL('agenda',args=i.id))}}
+</br>
+</div>
 {{pass}}
+</div>
