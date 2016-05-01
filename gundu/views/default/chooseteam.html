@@ -7,7 +7,7 @@
     <div  class="list-group-item active" style="background:#154360; color:white"><h4>Teams</h4></div>
 {{for i in teams:}}
 <div  class="list-group-item">
-    {{=i.name}} <span  class="badge" style="background:silver;color:black"><h6>{{=A('choose',_href=URL('show',args=i.id))}}</h6></span>
+    {{=i.name}} <span  class="badge" style="background:silver;font-size:15px">{{=A('choose',_href=URL('show',args=i.id))}}</span>
         </div>
 {{pass}}
 </div>

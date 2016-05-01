@@ -5,7 +5,7 @@
 ## Customize your APP title, subtitle and menus here
 #########################################################################
 
-response.logo = A(B('web',SPAN(2),'py'),XML('&trade;&nbsp;'),
+response.logo = A(B('Minutes'),
                   _class="navbar-brand",_href="http://www.web2py.com/",
                   _id="web2py-logo")
 response.title = request.application.replace('_',' ').title()
@@ -25,7 +25,7 @@ response.google_analytics_id = None
 #########################################################################
 
 response.menu = [
-    (T('Home'), False, URL('default', 'index'), [])
+    (T('Home'), False, URL('default', 'logo'), [])
 ]
 
 DEVELOPMENT_MENU = True
@@ -43,6 +43,7 @@ def _():
     (T('teams im in'), False, URL('default', 'teamin'), []),
     (T('as moderator'), False, URL('default', 'memo'), []),
      (T('create team'), False, URL('default', 'c_team'), []),
+     (T('choose team'), False, URL('default', 'chooseteam'), [])
 ]
 if DEVELOPMENT_MENU: _()
 

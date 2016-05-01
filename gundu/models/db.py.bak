@@ -121,7 +121,8 @@ db.define_table("topic",
 Field("agenda","reference agenda",readable=False,writable=False),
 Field("title","string",requires=IS_NOT_EMPTY()),
 Field("Des","text",label="Description",requires=IS_NOT_EMPTY()),
-Field("stime",label="Time alloted")
+Field("stime",label="Time alloted"),
+auth.signature
 )
 db.define_table("minutes",
                 Field("Reference","string",requires=IS_NOT_EMPTY()),
@@ -135,12 +136,11 @@ db.define_table("mail1",
                 Field("moderator",readable=False,writable=False),
                 auth.signature
     )
-"""
+
 from gluon.contrib.login_methods.rpx_account import RPXAccount
 auth.settings.actions_disabled=['register','change_password','request_reset_password']
 auth.settings.login_form = RPXAccount(request,
                                       api_key='0ac3875cfa8101c1fca35ca50ef725b3d9bd6808',
                                       domain='minutes',
-                                      url = "http://localhost:8000/%s/default/user/login" % request.
+                                      url = "http://localhost:8000/gundu/default/logo.html/%s/default/user/login" % request.
                                       application)
-"""

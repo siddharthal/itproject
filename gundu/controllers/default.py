@@ -7,7 +7,8 @@
 ## - user is required for authentication and authorization
 ## - download is for downloading files uploaded in the db (does streaming)
 #########################################################################
-@auth.requires_login()
+
+
 def index():
     """
     example action using the internationalization operator T and flash
@@ -48,6 +49,7 @@ def download():
     return response.download(request, db)
 
 
+
 def call():
     """
     exposes services. for example:
@@ -82,8 +84,10 @@ def chooseteam():
         response.flash="choose a team"
     teams=db(db.teams.id>0).select()
     return locals()
+@auth.requires_login()
+
 def show():
-    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('logo'))
     p=db((db.tble.person==auth.user_id) & (db.tble.teams==i.id) ).count()
     if p is 0:
         db.tble.insert(person=auth.user_id,teams=i.id)
@@ -92,6 +96,8 @@ def show():
         session.var=2
     redirect(URL('chooseteam'))
     return locals()
+@auth.requires_login()
+
 def myteams():
     p=db(db.teams.created_by==auth.user_id).select()
     if session.flag is 0:
@@ -104,14 +110,18 @@ def myteams():
             response.flash="already choosen"
             session.v=0
     return locals()
+@auth.requires_login()
+
 def details():
-    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('logo'))
     session.req=i.id
     array=db(db.tble.teams==i.id).select()
     session.c=db(db.tble.teams==i.id).count()
     return locals()
+@auth.requires_login()
+
 def details1():
-    i = db.tble(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.tble(request.args(0,cast=int)) or redirect(URL('logo'))
     if session.c>=5:
         m=db(db.teams.id==session.req).select()
         if m[0].moderator is None:
@@ -124,10 +134,14 @@ def details1():
         session.flag=0
     redirect(URL('myteams'))
     return locals()
+@auth.requires_login()
+
 def home():
     return locals()
+@auth.requires_login()
+
 def mail():
-    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('logo'))
     pro=db(db.teams.id==i.id).select()
     ma=db(db.mail1.teams==i.id).select(orderby=~db.mail1.created_on)
     if (pro[0].moderator==auth.user_id):
@@ -136,8 +150,10 @@ def mail():
         flag=0
     session.popo=i.id
     return locals()
+@auth.requires_login()
+
 def sendmail():
-    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('logo'))
     form=SQLFORM(db.mail1)#.process()
     if form.process().accepted:
     	response.flash = "mail sent"
@@ -150,11 +166,13 @@ def sendmail():
     elif form.errors:
         response.flash = "pls check subject and body"
     return locals()
+@auth.requires_login()
+
 def teamin():
     q=db(db.tble.person==auth.user_id).select()
     return locals()
 def mail2():
-    i = db.tble(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.tble(request.args(0,cast=int)) or redirect(URL('logo'))
     pro=db(db.teams.id==i.teams).select()
     ma=db(db.mail1.teams==i.teams).select(orderby=~db.mail1.created_on)
     if (pro[0].moderator==auth.user_id):
@@ -163,16 +181,18 @@ def mail2():
         flag=0
     session.popo=i.teams
     return locals()
+@auth.requires_login()
+
 def memo():
     p=db(db.teams.moderator==auth.user_id).select()
     return locals()
 def fullmail():
-    i = db.mail1(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.mail1(request.args(0,cast=int)) or redirect(URL('logo'))
     return locals()
 def c_agenda():
-    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('logo'))
     if(i.moderator!=auth.user_id):
-        redirect(URL('index'))
+        redirect(URL('logo'))
     form=SQLFORM(db.agenda)#.process()
     if form.process().accepted:
     	response.flash = "agenda created"
@@ -183,13 +203,20 @@ def c_agenda():
     else:
         response.flash = "Please fill the form"
     return locals()
+@auth.requires_login()
+def logo():
+    return locals()
+@auth.requires_login()
+
 def agenda():
-    i = db.teams(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.teams(request.args(0,cast=int)) or redirect(URL('logo'))
     yuvi=db(db.agenda.teams==i.id).select()
     session.pastore=i.moderator
     return locals()
+@auth.requires_login()
+
 def full():
-    i = db.agenda(request.args(0,cast=int)) or redirect(URL('index'))
+    i = db.agenda(request.args(0,cast=int)) or redirect(URL('logo'))
     form=SQLFORM(db.topic)
     pandya=db(db.topic.agenda==i.id).select()
     session.pro=i.id
@@ -201,6 +228,8 @@ def full():
     elif form.errors:
         response.flash = "Errors"
     return locals()
+@auth.requires_login()
+
 def topic():
     session.flow=1
     redirect((URL('full',args=session.pro)))

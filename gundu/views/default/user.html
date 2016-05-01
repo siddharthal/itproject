@@ -1,5 +1,10 @@
 {{extend 'layout.html'}}
-
+<style>
+ body {
+        background-image: url("{{=URL('static','images/header.jpg')}}");
+            background-size:cover;
+    }
+</style>
 <h2>
 {{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
 </h2>
